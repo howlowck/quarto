@@ -56,6 +56,7 @@ var Game = {
                 pieceId = e.dataTransfer.getData('text');
                 ins.movePiece(pieceId, this.id);
                 Dispatch.trigger('dropPiece', {piece: pieceId, space: this.id});
+                ins.updateGame();
             });
 
         $('.readyMoveButton').on('click', function () {
@@ -125,6 +126,9 @@ var Game = {
             Message.say(name + ' (you) entered the game');
         } else {
             Message.say(name + ' entered the game');
+        }
+        if (self && this.players.length < 2) {
+            Message.say('pass your URL to a friend to start a game');
         }
     },
     removePlayer: function (name) {

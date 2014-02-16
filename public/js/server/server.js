@@ -30,7 +30,7 @@ quarto.sockets.on('connection', function (socket) {
             socket.emit('registered', {message: message, players: [], socket: socket.id});
         } else {
             players = game.exportPlayers();
-            console.log(players);
+//            console.log(players);
             socket.emit('registered', {message: message, players: players, socket: socket.id});
         }
 
@@ -41,8 +41,8 @@ quarto.sockets.on('connection', function (socket) {
     socket.on('newPlayer', function newPlayer (userData) {
         var game = getGame(socket);
         var player = game.addPlayer({socket: socket.id, name: userData.name}).export();
-        console.log('hey! player ' + player['socket'] + ' ' + player['name'] + ' was added yo!');
-        console.log('-----------------------------');
+//        console.log('hey! player ' + player['socket'] + ' ' + player['name'] + ' was added yo!');
+//        console.log('-----------------------------');
         socket.emit('playerJoined', {player: player, self: true})
         socket.broadcast.to(gid).emit('playerJoined', {player: player, self: false});
         if (game.isGameReady()) {
@@ -74,7 +74,7 @@ quarto.sockets.on('connection', function (socket) {
 
     socket.on('disconnect', function disconnect () {
         var player= getGame(socket).players[socket.id];
-        console.log('this is the player ready to delete: ' + player.get('name'));
+//        console.log('this is the player ready to delete: ' + player.get('name'));
         getGame(socket).removePlayer(socket.id);
         socket.leave(gid);
         quarto.sockets.in(gid).emit('exit', {message: 'A player left', player: player.export()});

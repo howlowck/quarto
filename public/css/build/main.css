@@ -162,7 +162,7 @@ h1, h2 {
 
 .container {
   position: relative;
-  width: 1100px;
+  width: 900px;
   margin: 0 auto; }
 
 #overlay {
@@ -181,3 +181,6 @@ h1, h2 {
     height: 200px;
     margin: 0 auto;
     margin-top: 20%; }
+
+.social {
+  float: right; }

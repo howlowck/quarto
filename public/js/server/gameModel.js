@@ -29,11 +29,11 @@ var prototype = {
         attr['inGame'] = shouldInGame;
         var player = new Player(attr);
         this.players[attr.socket] = new Player(attr);
-        console.log('added ' + player.get('name') + ' as ' + player.get('socket') + ' to server!!!!');
+//        console.log('added ' + player.get('name') + ' as ' + player.get('socket') + ' to server!!!!');
         return player;
     },
     removePlayer: function (socketId) {
-        console.log('DELETING Player: ' + this.players[socketId].get('name'));
+//        console.log('DELETING Player: ' + this.players[socketId].get('name'));
         delete this.players[socketId];
     },
     enoughPlayers: function () {
@@ -72,7 +72,7 @@ var prototype = {
     exportPlayers: function() {
         var results = [];
         for (prop in this.players) {
-            console.log('here is the property: ' + prop + ' value: ' + this.players[prop].export()['socket']);
+//            console.log('here is the property: ' + prop + ' value: ' + this.players[prop].export()['socket']);
             results.push(this.players[prop].export());
         }
         return results;
