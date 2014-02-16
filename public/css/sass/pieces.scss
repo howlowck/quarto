@@ -1,0 +1,62 @@
+$large: 80px;
+$small: 40px;
+$hollow-size: 30px;
+.pieces {
+  position: relative;
+  left: 600px;
+  width: $large * 4;
+  margin-top: 50px;
+}
+
+.piece {
+  display: inline-block;
+  position: relative;
+  margin: 5px;
+  &.select {
+    outline-style: solid;
+    outline-width: 3px;
+    outline-offset: 2px;
+    outline-color: orange;
+  }
+}
+.small {
+  width: $small;
+  height: $small;
+}
+
+.large {
+  width: $large;
+  height: $large;
+}
+
+.white {
+  background: lightgray;
+}
+
+.dark {
+  background: brown;
+}
+
+.rect {
+  border-radius: 0;
+}
+
+.circle {
+  border-radius: $large;
+}
+
+.hollow {
+  &:before {
+    content: '';
+    display:block;
+    width: $hollow-size;
+    height: $hollow-size;
+    background: white;
+    border-radius: $hollow-size;
+    position: absolute;
+    left: 50%;
+    margin-left: - $hollow-size / 2;
+    top: 50%;
+    margin-top: - $hollow-size / 2;
+  }
+}

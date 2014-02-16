@@ -1,0 +1,27 @@
+input[type=text] {
+  border-radius: 5px;
+  border: none;
+  background: #add8e6;
+  font-size: 1em;
+}
+
+button {
+  transition: background 0.5s, color 0.5s;
+  font-size: 1em;
+  background: #bdc3c7;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  &:hover {
+    background: #3498db;
+    color: white;
+  }
+}
+
+button[disabled] {
+  cursor: auto;
+  &:hover {
+    background: #bdc3c7;
+    color: gray;
+  }
+}

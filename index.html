@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> Quarto</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href='http://fonts.googleapis.com/css?family=Lato:300' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="public/css/build/main.min.css">
+</head>
+<body>
+    <div id="overlay">
+        <div class="window welcome">
+            <h2>Welcome to Quarto!</h2>
+            <form id="connect" action="">
+                <label for="player-name">Your Name:</label>
+                <input type="text" id="player-name"/>
+                <br>
+                <button type="submit">Connect</button>
+            </form>
+        </div>
+    </div>
+    <div class="container">
+        <h1>Quarto</h1>
+
+        <div class="board">
+            <div class="space col-a row-4" id="a4"></div>
+            <div class="space col-b row-4" id="b4"></div>
+            <div class="space col-c row-4" id="c4"></div>
+            <div class="space col-d row-4" id="d4"></div>
+            <div class="space col-a row-3" id="a3"></div>
+            <div class="space col-b row-3" id="b3"></div>
+            <div class="space col-c row-3" id="c3"></div>
+            <div class="space col-d row-3" id="d3"></div>
+            <div class="space col-a row-2" id="a2"></div>
+            <div class="space col-b row-2" id="b2"></div>
+            <div class="space col-c row-2" id="c2"></div>
+            <div class="space col-d row-2" id="d2"></div>
+            <div class="space col-a row-1" id="a1"></div>
+            <div class="space col-b row-1" id="b1"></div>
+            <div class="space col-c row-1" id="c1"></div>
+            <div class="space col-d row-1" id="d1"></div>
+        </div>
+
+        <div class="waiting-area">
+        </div>
+        <div class="pieces">
+            <div class="piece dark large rect hollow" id="dlrh"></div>
+            <div class="piece white large rect hollow" id="wlrh"></div>
+           <div class="piece dark small rect hollow" id="dsrh"></div>
+           <div class="piece white small rect hollow" id="wsrh"></div>
+            <div class="piece dark large circle hollow" id="dlch"></div>
+            <div class="piece white large circle hollow" id="wlch"></div>
+            <div class="piece dark small circle hollow" id="dsch"></div>
+            <div class="piece white small circle hollow" id="wsch"></div>
+            <div class="piece dark large rect full" id="dlrf"></div>
+            <div class="piece white large rect full" id="wlrf"></div>
+            <div class="piece dark small rect full" id="dsrf"></div>
+            <div class="piece white small rect full" id="wsrf"></div>
+            <div class="piece dark large circle full" id="dlcf"></div>
+            <div class="piece white large circle full" id="wlcf"></div>
+            <div class="piece dark small circle full" id="dscf"></div>
+            <div class="piece white small circle full" id="wscf"></div>
+        </div>
+        <button class="readyMoveButton" disabled="true">Next Move</button>
+        <div id="console"></div>
+
+    </div>
+    <script src="public/js/build/app.js"></script>
+</body>
+</html>

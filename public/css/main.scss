@@ -1,0 +1,43 @@
+@import 'sass/start';
+
+h1, h2 {
+  font-family: 'Lato', sans-serif;
+}
+
+* {
+  font-family: 'Open Sans', sans-serif;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.readyMoveButton {
+  position: absolute;
+  left: 600px;
+}
+
+.container {
+  position:relative;
+  width: 1100px;
+  margin: 0 auto;
+}
+
+#overlay{
+  z-index: 50;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  .window {
+    border-radius: 5px;
+    padding: 15px;
+    background-color: white;
+    width: 300px;
+    height: 200px;
+    margin: 0 auto;
+    margin-top: 20%;
+  }
+}

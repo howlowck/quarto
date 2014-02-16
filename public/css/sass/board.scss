@@ -1,0 +1,72 @@
+$space-size: 100px;
+$space-margin: 30px;
+
+.board {
+  position: relative;
+}
+
+.waiting-area {
+  position: relative;
+  margin-left: 600px;
+  border: 5px solid gray;
+  width: $space-size;
+  height: $space-size;
+  &:before {
+    position: absolute;
+    top: 30%;
+    width: 80px;
+    text-align:center;
+    left: 50%;
+    margin-left: -40px;
+    font-size: 0.9em;
+    content: 'Holding Area';
+  }
+}
+
+.space {
+  position:absolute;
+  width: $space-size;
+  height: $space-size;
+  border-radius: $space-size;
+  border-color: gray;
+  border-style: solid;
+  border-width: 10px;
+
+  &.drag-over {
+    background-color: rgba(yellow, 0.4);
+  }
+
+  &.win {
+    border-color: green;
+  }
+  .small {
+    margin: 30px;
+  }
+  .large {
+    margin: 10px;
+  }
+}
+
+.col-b {
+  left: $space-size + $space-margin;
+}
+
+.col-c {
+  left: ($space-size + $space-margin) * 2;
+}
+
+.col-d {
+  left: ($space-size + $space-margin) * 3;
+}
+
+.row-3 {
+  top: $space-size + $space-margin;
+}
+
+.row-2 {
+  top: ($space-size + $space-margin) * 2;
+}
+
+.row-1 {
+  top: ($space-size + $space-margin) * 3;
+}

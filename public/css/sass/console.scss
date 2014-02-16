@@ -1,0 +1,29 @@
+#console {
+  position: absolute;
+  left: 0px;
+  top: 600px;
+  max-height: 200px;
+  width: 400px;
+  overflow: auto;
+  border-radius: 10px;
+  .message {
+    &:first-child {
+      padding-top: 10px;
+    }
+    color: white;
+    padding: 5px;
+    &.read {
+      color: #7f8c8d;
+
+    }
+    &.alert {
+      background: #c0392b;
+    }
+    &.cheer {
+      background: #27ae60;
+    }
+    &.info {
+      background: #2980b9;
+    }
+  }
+}
