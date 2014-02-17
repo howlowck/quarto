@@ -1,11 +1,14 @@
 var Backbone = require('backbone');
 var Client = require('socket.io-client');
+var Config = require('./config');
 
 var Socket = {
     connected: false,
     callbacks: {},
     connect: function (route) {
-        var io = Client.connect('http://' + document.location.hostname +':2060');
+//        var url = Config.url + ':' + Config.port + '/';
+        var url = Config.url;
+        var io = Client.connect(url);
         this.connected = true;
         this.io = io;
         this.enrollCallbacks();

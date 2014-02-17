@@ -2,11 +2,7 @@
   "name": "quarto",
   "version": "0.0.0",
   "dependencies": {
-    "socket.io": "~0.9.16",
-    "connect": "~2.12.0",
-    "socket.io-client": "~0.9.16",
-    "shortid": "~2.0.0",
-    "underscore": "~1.5.2"
+    "socket.io-client": "~0.9.16"
   },
   "devDependencies": {
     "gulp": "~3.4.0",

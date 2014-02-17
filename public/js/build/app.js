@@ -4141,6 +4141,8 @@ var Pieces = Backbone.Collection.extend({
 module.exports = Pieces;
 },{"../models/piece":14,"backbone":"oBesRV"}],11:[function(require,module,exports){
 var Config = {
+    url: 'http://howlowck-quarto-server.nodejitsu.com/', //'https://secure-journey-7715.herokuapp.com',//window.location.hostname,
+    port: location.port || 26215,
     pieces: [
         'dlrh', 'wlrh', 'dsrh', 'wsrh', 'dlch', 'wlch', 'dsch', 'wsch',
         'dlrf', 'wlrf', 'dsrf', 'wsrf', 'dlcf', 'wlcf', 'dscf', 'wscf'
@@ -4851,12 +4853,15 @@ module.exports = Route;
 },{"backbone":"oBesRV"}],18:[function(require,module,exports){
 var Backbone = require('backbone');
 var Client = require('socket.io-client');
+var Config = require('./config');
 
 var Socket = {
     connected: false,
     callbacks: {},
     connect: function (route) {
-        var io = Client.connect('http://' + document.location.hostname +':2060');
+//        var url = Config.url + ':' + Config.port + '/';
+        var url = Config.url;
+        var io = Client.connect(url);
         this.connected = true;
         this.io = io;
         this.enrollCallbacks();
@@ -4884,7 +4889,7 @@ var Socket = {
 };
 
 module.exports = Socket;
-},{"backbone":"oBesRV","socket.io-client":1}],19:[function(require,module,exports){
+},{"./config":11,"backbone":"oBesRV","socket.io-client":1}],19:[function(require,module,exports){
 var Backbone = require('backbone');
 
 var Dispatch = _.clone(Backbone.Events);
