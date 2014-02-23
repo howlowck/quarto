@@ -6,7 +6,7 @@
     <meta name="description" content="A Online Realtime Quarto Game" />
     <meta property="og:title" content="Quarto" />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="http://www.lifeishao.com/quarto" />
+    <meta property="og:url" content="http://www.lifeishao.com/quarto/" />
     <meta property="og:image" content="http://www.lifeishao.com/quarto/public/files/quarto.jpg" />
     <meta property="og:description" content="An Online Realtime Quarto Game" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -15,6 +15,14 @@
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 </head>
 <body>
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=412572172152958";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
     <div id="overlay">
         <div class="window welcome">
             <h2>Welcome to Quarto!</h2>
@@ -30,7 +38,9 @@
     </div>
     <div class="container">
         <h1>Quarto</h1>
-        <div class="social"><div class="fb-like" data-href="http://www.lifeishao.com/quarto" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div><br><a href="https://twitter.com/share" class="twitter-share-button" data-via="howlowck">Tweet</a></div>
+        <div class="social"><div class="fb-like" data-href="http://www.lifeishao.com/quarto" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
+            <br><a href="https://twitter.com/share" class="twitter-share-button" data-via="howlowck">Tweet</a>
+        </div>
         <div class="board">
             <div class="space col-a row-4" id="a4"></div>
             <div class="space col-b row-4" id="b4"></div>
@@ -75,14 +85,7 @@
 
     </div>
     <script src="public/js/build/app.js"></script>
-    <div id="fb-root"></div>
-    <script>(function(d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) return;
-        js = d.createElement(s); js.id = id;
-        js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=412572172152958";
-        fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));</script>
+
 
     <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
     <script>
