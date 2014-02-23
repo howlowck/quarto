@@ -23,7 +23,7 @@
   height: 80px; }
 
 .white {
-  background: lightgray; }
+  background: #999999; }
 
 .dark {
   background: brown; }
@@ -133,6 +133,8 @@
     border-radius: 4px; }
 
 .infobox {
+  position: absolute;
+  top: 560px;
   margin: 30px 0 20px 0;
   width: 100%; }
 
@@ -171,12 +173,14 @@ h1, h2 {
 
 .readyMoveButton {
   position: absolute;
-  left: 600px; }
+  left: 600px;
+  z-index: 10; }
 
 .container {
   position: relative;
   width: 900px;
-  margin: 0 auto; }
+  margin: 0 auto;
+  padding-bottom: 200px; }
 
 #overlay {
   z-index: 50;

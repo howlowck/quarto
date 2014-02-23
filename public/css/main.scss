@@ -15,12 +15,14 @@ h1, h2 {
 .readyMoveButton {
   position: absolute;
   left: 600px;
+  z-index: 10;
 }
 
 .container {
   position:relative;
   width: 900px;
   margin: 0 auto;
+  padding-bottom: $console-height;
 }
 
 #overlay{

@@ -1,9 +1,10 @@
+$console-height: 200px;
 #console {
 //  position: absolute;
 //  left: 0px;
 //  top: 600px;
   display: inline-block;
-  max-height: 200px;
+  max-height: $console-height;
   width: 400px;
   overflow: auto;
   border-radius: 10px;
@@ -44,6 +45,8 @@
 }
 
 .infobox {
+  position:absolute;
+  top: 560px;
   margin: 30px 0 20px 0;
   width: 100%;
 }

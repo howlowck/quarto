@@ -3872,8 +3872,6 @@ if (typeof define === "function" && define.amd) {
   define([], function () { return io; });
 }
 })();
-},{}],"backbone":[function(require,module,exports){
-module.exports=require('oBesRV');
 },{}],"oBesRV":[function(require,module,exports){
 var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {};(function browserifyShim(module, exports, define, browserify_shim__define__module__export__) {
 
@@ -3885,7 +3883,9 @@ global._ = require("underscore");
 
 }).call(global, undefined, undefined, undefined, function defineExport(ex) { module.exports = ex; });
 
-},{"jquery":"2mXtVH","underscore":"QFby3P"}],"jquery":[function(require,module,exports){
+},{"jquery":"2mXtVH","underscore":"QFby3P"}],"backbone":[function(require,module,exports){
+module.exports=require('oBesRV');
+},{}],"jquery":[function(require,module,exports){
 module.exports=require('2mXtVH');
 },{}],"2mXtVH":[function(require,module,exports){
 var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {};(function browserifyShim(module, exports, define, browserify_shim__define__module__export__) {
