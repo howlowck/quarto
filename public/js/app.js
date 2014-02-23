@@ -177,4 +177,4 @@ window.message = Message;
 window.dispatch = Dispatch;
 window.facebook = facebook;
 
-$('#connect button').attr('disabled', false);
+$('#connect button').attr('disabled', false).text('Connect');

@@ -4092,7 +4092,7 @@ window.message = Message;
 window.dispatch = Dispatch;
 window.facebook = facebook;
 
-$('#connect button').attr('disabled', false);
+$('#connect button').attr('disabled', false).text('Connect');
 },{"./quarto/board":9,"./quarto/game":13,"./quarto/route":17,"./quarto/socket":18,"./quarto/util/dispatch":19,"./quarto/util/message":20,"jquery":"2mXtVH","underscore":"QFby3P"}],9:[function(require,module,exports){
 /**
  * Created by haoluo on 2/2/14.
