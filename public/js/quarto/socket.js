@@ -6,7 +6,7 @@ var Socket = {
     connected: false,
     callbacks: {},
     connect: function () {
-        var url = Config.url;
+        var url = Config.url();
         var io = Client.connect(url);
         this.connected = true;
         this.io = io;

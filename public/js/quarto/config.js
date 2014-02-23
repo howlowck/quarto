@@ -1,7 +1,10 @@
 var Config = {
-    url: 'http://localhost:2060',
-//    url: 'http://howlowck-quarto-server.nodejitsu.com/', //'https://secure-journey-7715.herokuapp.com',//window.location.hostname,
-    port: location.port || 26215,
+    url: function() {
+        if (location.href.indexOf('lifeishao') < 0) {
+            return 'http://localhost:2060';
+        }
+        return 'http://howlowck-quarto-server.nodejitsu.com/';
+    },
     pieces: [
         'dlrh', 'wlrh', 'dsrh', 'wsrh', 'dlch', 'wlch', 'dsch', 'wsch',
         'dlrf', 'wlrf', 'dsrf', 'wsrf', 'dlcf', 'wlcf', 'dscf', 'wscf'
