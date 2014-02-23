@@ -186,4 +186,6 @@ form #nobody-label.disabled {
   color: #888888; }
 
 .social {
-  float: right; }
+  position: absolute;
+  top: 0;
+  right: 0; }
