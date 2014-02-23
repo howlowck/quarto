@@ -72,8 +72,10 @@ Socket.register('playerJoined', function (data) {
 
 $('#message-input').submit(function () {
     var input = $('#message-input input');
-    Socket.io.emit('message', {message: input.val()});
-    input.val('');
+    if (input.val() != '') {
+        Socket.io.emit('message', {message: input.val()});
+        input.val('');
+    }
     return false;
 });
 

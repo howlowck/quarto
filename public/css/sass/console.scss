@@ -1,11 +1,13 @@
 #console {
-  position: absolute;
-  left: 0px;
-  top: 600px;
+//  position: absolute;
+//  left: 0px;
+//  top: 600px;
+  display: inline-block;
   max-height: 200px;
   width: 400px;
   overflow: auto;
   border-radius: 10px;
+  vertical-align: bottom;
   .message {
     &:first-child {
       padding-top: 10px;
@@ -29,4 +31,18 @@
       background: #2980b9;
     }
   }
+}
+
+.message-box {
+  display: inline-block;
+  input {
+    padding: 10px;
+  }
+  button {
+    border-radius: 4px;
+  }
+}
+
+.infobox {
+  width: 100%;
 }

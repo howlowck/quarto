@@ -102,13 +102,12 @@
   top: 390px; }
 
 #console {
-  position: absolute;
-  left: 0px;
-  top: 600px;
+  display: inline-block;
   max-height: 200px;
   width: 400px;
   overflow: auto;
-  border-radius: 10px; }
+  border-radius: 10px;
+  vertical-align: bottom; }
   #console .message {
     color: white;
     padding: 5px; }
@@ -125,6 +124,16 @@
       background: #27ae60; }
     #console .message.info {
       background: #2980b9; }
+
+.message-box {
+  display: inline-block; }
+  .message-box input {
+    padding: 10px; }
+  .message-box button {
+    border-radius: 4px; }
+
+.infobox {
+  width: 100%; }
 
 input[type=text] {
   border-radius: 5px;
@@ -192,12 +201,3 @@ form #nobody-label.disabled {
   position: absolute;
   top: 0;
   right: 0; }
-
-.message-box {
-  position: relative;
-  left: 420px;
-  top: 100px; }
-  .message-box input {
-    padding: 10px; }
-  .message-box button {
-    border-radius: 4px; }
