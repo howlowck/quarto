@@ -1,5 +1,6 @@
 var Config = {
-    url: 'http://howlowck-quarto-server.nodejitsu.com/', //'https://secure-journey-7715.herokuapp.com',//window.location.hostname,
+    url: 'http://localhost:2060',
+//    url: 'http://howlowck-quarto-server.nodejitsu.com/', //'https://secure-journey-7715.herokuapp.com',//window.location.hostname,
     port: location.port || 26215,
     pieces: [
         'dlrh', 'wlrh', 'dsrh', 'wsrh', 'dlch', 'wlch', 'dsch', 'wsch',

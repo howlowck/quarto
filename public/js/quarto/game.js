@@ -18,7 +18,6 @@ var Game = {
         var ins = this;
         var offsetX;
         var offsetY;
-
         $('.piece')
             .on('dragstart', function (evt) {
                 var e = evt.originalEvent;
@@ -79,6 +78,7 @@ var Game = {
     },
     ready: false, //Game Ready? Are All Players Present?
     started: false, //Game Started? Is move count > 0?
+    inPlay: true, //Game is actively inplay or just displaying..
     pieces: pieces,
     players: players,
     you: null,
@@ -121,15 +121,22 @@ var Game = {
         var name = attr.name;
         var player = new Player(attr);
         this.players.add(player);
+
         if (self) {
             this.you = player;
             Message.say(name + ' (you) entered the game');
         } else {
             Message.say(name + ' entered the game');
         }
-        if (self && this.players.length < 2) {
-            Message.say('pass your URL to a friend to start a game');
+
+        if (self && this.players.length < 2 && ! this.playerMatch) {
+            Message.say('pass this url: <br>'+ location.href +'<br> to a friend to start a game');
+        } else if (self && this.players.length < 2 && this.playerMatch) {
+            Message.say('please be patient... wait for another player to join');
+        } else if (! self && this.players.length == 2 && this.playerMatch) {
+            Message.say('your patience paid off! Player found');
         }
+
     },
     removePlayer: function (name) {
         this.players.remove(this.players.findWhere({name: name}));
@@ -174,6 +181,16 @@ var Game = {
             this.ready = true;
         }
         this.updateGame();
+    },
+    setBoard: function (board) {
+        var ins = this;
+        _.each(board, function (space) {
+            if (!! space.occupied) {
+                console.log(space.occupied);
+                Board.setSpace(space.name, space.occupied);
+                $('#' + space.name).append($('#' + space.occupied));
+            }
+        });
     },
     validateMove: function () {
         if (this.ready == false) {
@@ -279,6 +296,10 @@ var Game = {
         } else {
             Message.say('Click Next Move to finish your move');
         }
+    },
+    disableMatchInput: function () {
+        $('#nobody').attr('disabled', true);
+        $('#nobody-label').addClass('disabled');
     }
 };
 

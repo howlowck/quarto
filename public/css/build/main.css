@@ -178,9 +178,12 @@ h1, h2 {
     padding: 15px;
     background-color: white;
     width: 300px;
-    height: 250px;
+    height: 300px;
     margin: 0 auto;
-    margin-top: 20%; }
+    margin-top: 10%; }
+
+form #nobody-label.disabled {
+  color: #888888; }
 
 .social {
   float: right; }

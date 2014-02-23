@@ -5,8 +5,7 @@ var Config = require('./config');
 var Socket = {
     connected: false,
     callbacks: {},
-    connect: function (route) {
-//        var url = Config.url + ':' + Config.port + '/';
+    connect: function () {
         var url = Config.url;
         var io = Client.connect(url);
         this.connected = true;

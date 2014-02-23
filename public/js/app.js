@@ -14,23 +14,33 @@ Dispatch.on('pieces:setup', function () {
 Game.init();
 Game.newGame();
 
+if (location.hash.length > 1) {
+    Game.disableMatchInput();
+}
+
 var route = new Route();
 
 Backbone.history.start();
 
 
 Socket.register('connected', function () {
-    if ( ! route.getCurrentGameId()) {
-        Socket.io.emit('getId');
+    if ( !! route.getCurrentGameId()) {
+        Socket.io.emit('register', {gameid: route.getCurrentGameId()});
+    } else if (Game.playerMatch) {
+        Socket.io.emit('matchPlayer');
     } else {
-        Socket.io.emit('register', route.getCurrentGameId());
+        Socket.io.emit('getId');
     }
 });
 
-Socket.register('gotId', function (gameId) {
-    console.log('I got a gameID of: ' + gameId);
-    route.navigate(gameId);
-    Socket.io.emit('register', gameId);
+Socket.register('gotId', function (data) {
+    console.log('I got a gameID of: ' + data.id);
+    route.navigate(data.id);
+    if (data.foundPlayer === false) {
+        Socket.io.emit('register', {gameid: data.id, waiting: true});
+    } else {
+        Socket.io.emit('register', {gameid: data.id});
+    }
 });
 
 Socket.register('registered', function (data) {
@@ -39,6 +49,11 @@ Socket.register('registered', function (data) {
     _.each(data.players, function (player) {
         Game.addPlayer(player);
     });
+    if (data.board) {
+        Game.setBoard(data.board);
+        Game.inPlay = false;
+        Message.title('Watching game');
+    }
 
     var name = $('#player-name').val();
     var attr = {socket: data.socket, name: name};
@@ -135,7 +150,8 @@ Socket.register('exit', function (data) {
 
 $('#connect').on('submit', function () {
     if ($('#player-name').val().length > 0) {
-        Socket.connect(route);
+        Game.playerMatch = $('#nobody').is(':checked');
+        Socket.connect();
         $('#overlay').addClass('hidden');
     }
     return false;

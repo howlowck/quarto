@@ -3929,23 +3929,33 @@ Dispatch.on('pieces:setup', function () {
 Game.init();
 Game.newGame();
 
+if (location.hash.length > 1) {
+    Game.disableMatchInput();
+}
+
 var route = new Route();
 
 Backbone.history.start();
 
 
 Socket.register('connected', function () {
-    if ( ! route.getCurrentGameId()) {
-        Socket.io.emit('getId');
+    if ( !! route.getCurrentGameId()) {
+        Socket.io.emit('register', {gameid: route.getCurrentGameId()});
+    } else if (Game.playerMatch) {
+        Socket.io.emit('matchPlayer');
     } else {
-        Socket.io.emit('register', route.getCurrentGameId());
+        Socket.io.emit('getId');
     }
 });
 
-Socket.register('gotId', function (gameId) {
-    console.log('I got a gameID of: ' + gameId);
-    route.navigate(gameId);
-    Socket.io.emit('register', gameId);
+Socket.register('gotId', function (data) {
+    console.log('I got a gameID of: ' + data.id);
+    route.navigate(data.id);
+    if (data.foundPlayer === false) {
+        Socket.io.emit('register', {gameid: data.id, waiting: true});
+    } else {
+        Socket.io.emit('register', {gameid: data.id});
+    }
 });
 
 Socket.register('registered', function (data) {
@@ -3954,6 +3964,11 @@ Socket.register('registered', function (data) {
     _.each(data.players, function (player) {
         Game.addPlayer(player);
     });
+    if (data.board) {
+        Game.setBoard(data.board);
+        Game.inPlay = false;
+        Message.title('Watching game');
+    }
 
     var name = $('#player-name').val();
     var attr = {socket: data.socket, name: name};
@@ -4050,7 +4065,8 @@ Socket.register('exit', function (data) {
 
 $('#connect').on('submit', function () {
     if ($('#player-name').val().length > 0) {
-        Socket.connect(route);
+        Game.playerMatch = $('#nobody').is(':checked');
+        Socket.connect();
         $('#overlay').addClass('hidden');
     }
     return false;
@@ -4141,7 +4157,8 @@ var Pieces = Backbone.Collection.extend({
 module.exports = Pieces;
 },{"../models/piece":14,"backbone":"oBesRV"}],11:[function(require,module,exports){
 var Config = {
-    url: 'http://howlowck-quarto-server.nodejitsu.com/', //'https://secure-journey-7715.herokuapp.com',//window.location.hostname,
+    url: 'http://localhost:2060',
+//    url: 'http://howlowck-quarto-server.nodejitsu.com/', //'https://secure-journey-7715.herokuapp.com',//window.location.hostname,
     port: location.port || 26215,
     pieces: [
         'dlrh', 'wlrh', 'dsrh', 'wsrh', 'dlch', 'wlch', 'dsch', 'wsch',
@@ -4437,7 +4454,6 @@ var Game = {
         var ins = this;
         var offsetX;
         var offsetY;
-
         $('.piece')
             .on('dragstart', function (evt) {
                 var e = evt.originalEvent;
@@ -4498,6 +4514,7 @@ var Game = {
     },
     ready: false, //Game Ready? Are All Players Present?
     started: false, //Game Started? Is move count > 0?
+    inPlay: true, //Game is actively inplay or just displaying..
     pieces: pieces,
     players: players,
     you: null,
@@ -4540,15 +4557,22 @@ var Game = {
         var name = attr.name;
         var player = new Player(attr);
         this.players.add(player);
+
         if (self) {
             this.you = player;
             Message.say(name + ' (you) entered the game');
         } else {
             Message.say(name + ' entered the game');
         }
-        if (self && this.players.length < 2) {
-            Message.say('pass your URL to a friend to start a game');
+
+        if (self && this.players.length < 2 && ! this.playerMatch) {
+            Message.say('pass this url: <br>'+ location.href +'<br> to a friend to start a game');
+        } else if (self && this.players.length < 2 && this.playerMatch) {
+            Message.say('please be patient... wait for another player to join');
+        } else if (! self && this.players.length == 2 && this.playerMatch) {
+            Message.say('your patience paid off! Player found');
         }
+
     },
     removePlayer: function (name) {
         this.players.remove(this.players.findWhere({name: name}));
@@ -4593,6 +4617,16 @@ var Game = {
             this.ready = true;
         }
         this.updateGame();
+    },
+    setBoard: function (board) {
+        var ins = this;
+        _.each(board, function (space) {
+            if (!! space.occupied) {
+                console.log(space.occupied);
+                Board.setSpace(space.name, space.occupied);
+                $('#' + space.name).append($('#' + space.occupied));
+            }
+        });
     },
     validateMove: function () {
         if (this.ready == false) {
@@ -4698,10 +4732,15 @@ var Game = {
         } else {
             Message.say('Click Next Move to finish your move');
         }
+    },
+    disableMatchInput: function () {
+        $('#nobody').attr('disabled', true);
+        $('#nobody-label').addClass('disabled');
     }
 };
 
 module.exports = Game;
+
 },{"./board":9,"./collections/pieces":10,"./config":11,"./expert":12,"./models/piece":14,"./models/player":15,"./models/space":16,"./util/dispatch":19,"./util/message":20,"underscore":"QFby3P"}],14:[function(require,module,exports){
 /**
  * Created by haoluo on 2/2/14.
@@ -4858,8 +4897,7 @@ var Config = require('./config');
 var Socket = {
     connected: false,
     callbacks: {},
-    connect: function (route) {
-//        var url = Config.url + ':' + Config.port + '/';
+    connect: function () {
         var url = Config.url;
         var io = Client.connect(url);
         this.connected = true;
