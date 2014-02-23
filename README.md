@@ -6,6 +6,8 @@ Feel free to browse the code and fork it as you wish.
 
 If you are interested in how to play the game.. take a look at the [wikipedia page](https://en.wikipedia.org/wiki/Quarto_(board_game)).
 
+[live site](http://www.lifeishao.com)
+
 ## Game Features
 * Player match
 * Chat
