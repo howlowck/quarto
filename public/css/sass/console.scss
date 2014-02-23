@@ -14,7 +14,10 @@
     padding: 5px;
     &.read {
       color: #7f8c8d;
-
+    }
+    &.text {
+      color: black;
+      background: #add8e6;
     }
     &.alert {
       background: #c0392b;

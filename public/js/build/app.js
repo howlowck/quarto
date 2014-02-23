@@ -3983,7 +3983,15 @@ Socket.register('playerJoined', function (data) {
     Game.validateGameReady();
 });
 
-Socket.register('gameReady', function (data) {
+$('#message-input').submit(function () {
+    var input = $('#message-input input');
+    Socket.io.emit('message', {message: input.val()});
+    input.val('');
+    return false;
+});
+
+Socket.register('message', function (data) {
+    Message.text(data.name + ': ' + data.message);
 });
 
 Socket.register('pickedStartPlayer', function (data) {
@@ -4957,9 +4965,15 @@ var selector = '#console';
 
 var Message = {
     lastUpdateTime: null,
-    say: function (message, updateConsole) {
+    say: function (message) {
         this.updateConsole();
         $(selector).prepend('<div class="message info">' + message + '</div>');
+    },
+    text: function (message) {
+        this.updateConsole();
+        var $div = $('<div></div>').addClass('message text');
+        $div.text(message);
+        $(selector).prepend($div);
     },
     alert: function (message) {
         this.updateConsole();

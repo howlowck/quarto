@@ -68,7 +68,15 @@ Socket.register('playerJoined', function (data) {
     Game.validateGameReady();
 });
 
-Socket.register('gameReady', function (data) {
+$('#message-input').submit(function () {
+    var input = $('#message-input input');
+    Socket.io.emit('message', {message: input.val()});
+    input.val('');
+    return false;
+});
+
+Socket.register('message', function (data) {
+    Message.text(data.name + ': ' + data.message);
 });
 
 Socket.register('pickedStartPlayer', function (data) {

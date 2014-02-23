@@ -116,6 +116,9 @@
       padding-top: 10px; }
     #console .message.read {
       color: #7f8c8d; }
+    #console .message.text {
+      color: black;
+      background: #add8e6; }
     #console .message.alert {
       background: #c0392b; }
     #console .message.cheer {
@@ -189,3 +192,12 @@ form #nobody-label.disabled {
   position: absolute;
   top: 0;
   right: 0; }
+
+.message-box {
+  position: relative;
+  left: 420px;
+  top: 100px; }
+  .message-box input {
+    padding: 10px; }
+  .message-box button {
+    border-radius: 4px; }
