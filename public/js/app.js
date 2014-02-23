@@ -57,6 +57,8 @@ Socket.register('registered', function (data) {
         Message.title('Watching game');
     }
 
+    $('.message-box').removeClass('hidden');
+
     var name = $('#player-name').val();
     var attr = {socket: data.socket, name: name};
     Socket.io.emit('newPlayer', attr);
