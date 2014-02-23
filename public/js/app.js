@@ -31,6 +31,7 @@ Socket.register('connected', function () {
     } else {
         Socket.io.emit('getId');
     }
+    facebook();
 });
 
 Socket.register('gotId', function (data) {
@@ -49,6 +50,7 @@ Socket.register('registered', function (data) {
     _.each(data.players, function (player) {
         Game.addPlayer(player);
     });
+
     if (data.board) {
         Game.setBoard(data.board);
         Game.inPlay = false;
@@ -157,8 +159,22 @@ $('#connect').on('submit', function () {
     return false;
 });
 
+function facebook() {
+    var d = document,
+        s = 'script',
+        id = 'facebook-jssdk';
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=412572172152958";
+    fjs.parentNode.insertBefore(js, fjs);
+}
+
 window.game = Game;
 window.board = Board;
 window.route = route;
 window.message = Message;
 window.dispatch = Dispatch;
+window.facebook = facebook;
+
+$('#connect button').attr('disabled', false);
