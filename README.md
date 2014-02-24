@@ -8,6 +8,8 @@ If you are interested in how to play the game.. take a look at the [wikipedia pa
 
 [live site](http://www.lifeishao.com/quarto)
 
+[server code](https://github.com/howlowck/quarto-server)
+
 ## Game Features
 * Player match
 * Chat
