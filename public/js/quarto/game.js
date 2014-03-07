@@ -234,12 +234,14 @@ var Game = {
         var piece = this.getPiece(pieceId);
         piece.set('state', 'inplay');
         piece.set('position', spaceId);
-        if (Board.setSpace(spaceId, piece)) {
+        var setBoard = Board.setSpace(spaceId, piece);
+        if (setBoard) {
             $('#' + spaceId).append(piece.$view);
-            this.processAnalysis(Expert.analyzeMove(piece));
             this.move.set('moved', true);
         }
         Board.refreshBoard();
+        this.processAnalysis(Expert.analyzeMove(piece));
+
     },
 
     processAnalysis: function (results) {
