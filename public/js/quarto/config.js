@@ -3,7 +3,7 @@ var Config = {
         if (location.href.indexOf('lifeishao') < 0) {
             return 'http://localhost:2060';
         }
-        return 'http://howlowck-quarto-server.nodejitsu.com/';
+        return 'http://107.­170.­122.­143:2060';
     },
     pieces: [
         'dlrh', 'wlrh', 'dsrh', 'wsrh', 'dlch', 'wlch', 'dsch', 'wsch',
