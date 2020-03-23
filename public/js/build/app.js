@@ -4188,7 +4188,7 @@ var Config = {
         if (location.href.indexOf('lifeishao') < 0) {
             return 'http://localhost:2060';
         }
-        return 'http://45.55.174.160:2060';
+        return 'http://206.189.197.33:2060';
     },
     pieces: [
         'dlrh', 'wlrh', 'dsrh', 'wsrh', 'dlch', 'wlch', 'dsch', 'wsch',
